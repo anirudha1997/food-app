@@ -7,6 +7,7 @@ const Body = () => {
   const [filteredRestaurantList, setfilteredRestaurantList] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [filterApplied, setFilterApplied] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
 
   const RestaurantCardWithLabel = withPopularLabel(RestaurantCard);
 
@@ -29,17 +30,36 @@ const Body = () => {
   }, []);
 
   const fetctData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    setRestaurantList(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setfilteredRestaurantList(
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    try {
+      const data = await fetch(
+        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
+      );
+      const json = await data.json();
+      setRestaurantList(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+      setfilteredRestaurantList(
+        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants
+      );
+    } catch (error) {
+      setFetchError(error);
+    }
   };
+
+  if (fetchError)
+    return (
+      <div className="text-center mt-[20px]">
+        <h1 className="text-xl font-bold">
+          {"Error fetching data: " + fetchError}
+        </h1>
+        <h2>
+          Check if the CORS extension is enabled. For more details, please check
+          the README file.
+        </h2>
+      </div>
+    );
 
   if (!restaurantList)
     return (

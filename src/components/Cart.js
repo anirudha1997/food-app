@@ -17,12 +17,12 @@ const Cart = () => {
 
   if (cartItems.length === 0)
     return (
-      <div className="text-center w-8/12 m-auto  min-h-screen">
+      <div className="text-center w-8/12 m-auto pb-28">
         <h1 className="text-2xl font-bold my-10">Your cart is empty!</h1>
       </div>
     );
   return (
-    <div className="text-center w-8/12 m-auto  min-h-screen">
+    <div className="text-center w-8/12 m-auto pb-28">
       <h1 className="text-2xl font-bold my-10">Cart</h1>
       <div className="bg-slate-100 my-3 px-4 py-2 shadow-md">
         {cartItems.map((item) => (
