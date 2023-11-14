@@ -1,53 +1,71 @@
 import { LOGO_URL } from "../utils/constant";
-import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../utils/useOnlineStatus";
-import UserContext from "./UserContext";
 import { useSelector } from "react-redux";
+import MOBILE_MENU from "../assets/images/mobile-menu-icon.png";
+import { useEffect, useState } from "react";
 
 const Header = () => {
-  const [btnText, setBtnText] = useState("Login");
-
-  const onlineStatus = useOnlineStatus();
-
-  const { loggedinUser } = useContext(UserContext);
-
   // Subscribing to the store
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
+  const [mobileMenuVisible, setMobileMenuVisible] = useState(true);
+
+  const screenResizeHandler = () => {
+    if (window.innerWidth < 768) setMobileMenuVisible(false);
+    else setMobileMenuVisible(true);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", screenResizeHandler);
+
+    return () => {
+      window.removeEventListener("resize", screenResizeHandler);
+    };
+  }, []);
 
   return (
-    <div className="flex justify-between items-center bg-gray-700 shadow-lg">
-      <img src={LOGO_URL} alt="logo" className="w-36" />
-      <div>
-        <ul className="flex text-white text-xl">
-          <li className="px-5">Online Status : {onlineStatus ? "🟢" : "🔴"}</li>
-          <li className="px-5">
-            <Link to="/">Home</Link>
+    <div
+      className={
+        "flex justify-between items-center bg-gray-700 shadow-lg fixed top-0 w-full z-20"
+      }
+      id="header"
+    >
+      <div className="flex items-center">
+        <img src={LOGO_URL} alt="logo" className="w-24 md:w-36 " />
+        <p className="text-xl md:text-3xl font-bold pl-5 text-white italic">
+          Food on Rails
+        </p>
+      </div>
+      <div className="pr-5 md:hidden">
+        <img
+          src={MOBILE_MENU}
+          alt="mobile menu"
+          className="cursor-pointer w-12"
+          onClick={() => setMobileMenuVisible(!mobileMenuVisible)}
+        />
+      </div>
+      <div
+        className={
+          !mobileMenuVisible
+            ? "hidden"
+            : "absolute md:relative top-[5.5rem] md:top-0 left-2 md:left-auto rounded-md md:rounded-none bg-white md:bg-transparent shadow-md md:shadow-none w-[97%] md:w-fit"
+        }
+      >
+        <ul className="md:flex md:text-white text-xl p-2 md:p-0">
+          <li className="px-5 py-3 border-b-[1px] border-b-gray-200 md:border-none">
+            <Link to="/" onClick={() => setMobileMenuVisible(false)}>
+              Home
+            </Link>
           </li>
-          <li className="px-5">
-            <Link to="/about">About Us</Link>
+          <li className="px-5 py-3 border-b-[1px] border-b-gray-200 md:border-none">
+            <Link to="/about" onClick={() => setMobileMenuVisible(false)}>
+              About Us
+            </Link>
           </li>
-          <li className="px-5">
-            <Link to="/contact">Contact</Link>
+          <li className="px-5 py-3 border-b-[1px] border-b-gray-200 md:border-none">
+            <Link to="/cart" onClick={() => setMobileMenuVisible(false)}>
+              Cart 🛒 ({cartItems.length})
+            </Link>
           </li>
-          <li className="px-5">
-            <Link to="/grocery">Grocery</Link>
-          </li>
-          <li className="px-5">
-            <Link to="/cart">Cart 🛒 ({cartItems.length})</Link>
-          </li>
-          <button
-            className="px-5"
-            onClick={() => {
-              return btnText === "Login"
-                ? setBtnText("Logout")
-                : setBtnText("Login");
-            }}
-          >
-            {btnText}
-          </button>
-          <li className="px-5">👨 {loggedinUser}</li>
         </ul>
       </div>
     </div>

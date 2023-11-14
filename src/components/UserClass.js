@@ -9,28 +9,17 @@ class UserClass extends React.Component {
         login: "dummy",
       },
     };
-    console.log(this.props.name + "Child Constructor called");
   }
 
   componentDidMount = async () => {
     const data = await fetch("https://api.github.com/users/anirudha1997");
     const json = await data.json();
-    console.log("json:", json);
     this.setState({
       user: json,
     });
   };
 
-  componentDidUpdate = () => {
-    console.log("Props updated");
-  };
-
-  componentWillUnmount = () => {
-    // clearInterval(this.timer);
-  };
-
   render() {
-    console.log(this.props.name + "Child Render called");
     const { login, name } = this.state.user;
     return (
       <div>

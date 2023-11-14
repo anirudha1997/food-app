@@ -8,8 +8,9 @@ const RestaurantMenu = () => {
   const [showIndex, setShowIndex] = useState(null);
   const { resId } = useParams();
   const resData = useRestaurantMenu(resId);
-  console.log("Data:", resData);
   if (resData.length === 0) return <ShimmerCards />;
+
+  console.log(resData);
 
   const { name, cuisines, costForTwoMessage } =
     resData?.cards[0]?.card?.card?.info;
@@ -21,10 +22,8 @@ const RestaurantMenu = () => {
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
 
-  console.log("items:", categories);
-
   return (
-    <div className="text-center">
+    <div className="text-center min-h-screen">
       <h1 className="font-bold my-6 text-2xl">{name}</h1>
       <p className="font-bold text-lg mb-10">
         {cuisines.join(", ")} - {costForTwoMessage}

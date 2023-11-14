@@ -6,7 +6,7 @@ const RestaurantCard = (props) => {
   const { cloudinaryImageId, name, avgRating, cuisines, id } = resData;
   return (
     <div
-      className="m-4 p-4 w-[260px] h-[440px] cursor-pointer rounded-lg bg-gray-100 relative hover:bg-gray-200"
+      className="col-span-1 mx-4 p-4 rounded-lg bg-gray-100 relative shadow-md hover:bg-gray-200 flex flex-col h-full"
       data-testid="resCard"
     >
       <div className="h-full">
@@ -16,9 +16,13 @@ const RestaurantCard = (props) => {
           src={CDN_URL + cloudinaryImageId}
         />
         <h3 className="font-bold py-4 text-lg">{name}</h3>
+        <p className="font-semibold">Cuisines:</p>
         <h4>{cuisines.join(", ")}</h4>
-        <h4 className="py-3">{avgRating} stars</h4>
-        <Link to={"/restaurants/" + id} key={id}>
+        <h4 className="py-3">
+          <span className="font-semibold">Rating: </span>
+          {avgRating} stars
+        </h4>
+        <Link to={"/restaurants/" + id} key={id} className="cursor-pointer">
           <div className="absolute top-0 left-0 w-full h-full"></div>
         </Link>
       </div>

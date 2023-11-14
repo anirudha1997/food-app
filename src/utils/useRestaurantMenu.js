@@ -9,11 +9,8 @@ const useRestaurantMenu = (resId) => {
   const fetchRestaurantData = async () => {
     const data = await fetch(fetch_url);
     const json = await data.json();
-    console.log(json.data);
     setResData(json.data);
   };
-
-  console.log("customHook called");
 
   useEffect(() => {
     fetchRestaurantData();

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { addItem, removeItem } from "../utils/cartSlice";
-import { CDN_URL } from "../utils/constant";
+import { CDN_URL, NO_IMAGE } from "../utils/constant";
 
 const ItemCard = (props) => {
   const { itemData, cardLocation } = props;
@@ -26,7 +26,10 @@ const ItemCard = (props) => {
       className="bg-white mb-3 p-4 flex items-center justify-between"
       data-testid="itemCard"
     >
-      <img src={CDN_URL + imageId} className="w-2/12"></img>
+      <img
+        src={imageId ? CDN_URL + imageId : NO_IMAGE}
+        className="w-2/12"
+      ></img>
       <div className="w-10/12 pl-4 text-left">
         <div className="flex items-center justify-between">
           <h4 className="font-bold text-xl">{name}</h4>
