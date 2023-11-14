@@ -52,17 +52,32 @@ const Header = () => {
       >
         <ul className="md:flex md:text-white text-xl p-2 md:p-0">
           <li className="px-5 py-3 border-b-[1px] border-b-gray-200 md:border-none">
-            <Link to="/" onClick={() => setMobileMenuVisible(false)}>
+            <Link
+              to="/"
+              onClick={() => {
+                if (window.innerWidth < 768) setMobileMenuVisible(false);
+              }}
+            >
               Home
             </Link>
           </li>
           <li className="px-5 py-3 border-b-[1px] border-b-gray-200 md:border-none">
-            <Link to="/about" onClick={() => setMobileMenuVisible(false)}>
+            <Link
+              to="/about"
+              onClick={() => {
+                if (window.innerWidth < 768) setMobileMenuVisible(false);
+              }}
+            >
               About Us
             </Link>
           </li>
           <li className="px-5 py-3 border-b-[1px] border-b-gray-200 md:border-none">
-            <Link to="/cart" onClick={() => setMobileMenuVisible(false)}>
+            <Link
+              to="/cart"
+              onClick={() => {
+                if (window.innerWidth < 768) setMobileMenuVisible(false);
+              }}
+            >
               Cart 🛒 ({cartItems.length})
             </Link>
           </li>
