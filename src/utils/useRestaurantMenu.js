@@ -14,9 +14,6 @@ const useRestaurantMenu = (resId) => {
       setResData(json.data);
     } catch (error) {
       console.log("Error: " + error);
-      console.log(
-        "Check if CORS extension is enabled. For more details check the README file."
-      );
     }
   };
 
