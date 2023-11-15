@@ -2,9 +2,6 @@
 
 Tech Stack: ReactJS, Tailwind CSS, React Router, Redux Toolkit, Jest, React Testing Library
 
-NOTE: To be able to run this app, you need to install a CORS extension in your browser to allow for fetching data from cross-origin (in this case from Swiggy).
-CORS Extension : [https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf](url)
-
 Data: Fetched list of restaurants and their menus using Swiggy API
 
 Features implemented:
