@@ -30,10 +30,14 @@ const Header = () => {
       id="header"
     >
       <div className="flex items-center">
-        <img src={LOGO_URL} alt="logo" className="w-24 md:w-36 " />
-        <p className="text-xl md:text-3xl font-bold pl-5 text-white italic">
-          Food on Rails
-        </p>
+        <Link to="/">
+          <img src={LOGO_URL} alt="logo" className="w-24 md:w-36 " />
+        </Link>
+        <Link to="/">
+          <p className="text-xl md:text-3xl font-bold pl-5 text-white italic">
+            Food on Rails
+          </p>
+        </Link>
       </div>
       <div className="pr-5 md:hidden">
         <img
