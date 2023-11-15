@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../utils/cartSlice";
 import ItemCard from "./ItemCard";
@@ -12,7 +13,7 @@ const Cart = () => {
   };
 
   const cartValue = cartItems.reduce((total, item) => {
-    return total + item.card.info.price / 100;
+    return parseFloat(total + item.card.info.price / 100);
   }, 0);
 
   if (cartItems.length === 0)
