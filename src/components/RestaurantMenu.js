@@ -10,8 +10,6 @@ const RestaurantMenu = () => {
   const resData = useRestaurantMenu(resId);
   if (resData.length === 0) return <ShimmerCards />;
 
-  console.log(resData);
-
   const { name, cuisines, costForTwoMessage } =
     resData?.cards[0]?.card?.card?.info;
 

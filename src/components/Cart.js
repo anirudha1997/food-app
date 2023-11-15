@@ -13,7 +13,10 @@ const Cart = () => {
   };
 
   const cartValue = cartItems.reduce((total, item) => {
-    return parseFloat(total + item.card.info.price / 100);
+    const itemPrice = item.card.info.price
+      ? item.card.info.price / 100
+      : item.card.info.defaultPrice / 100;
+    return total + itemPrice;
   }, 0);
 
   if (cartItems.length === 0)
