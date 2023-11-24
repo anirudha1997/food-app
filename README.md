@@ -4,7 +4,6 @@ Tech Stack: ReactJS, Tailwind CSS, React Router, Redux Toolkit, Jest, React Test
 
 Data: Fetched list of restaurants and their menus using Swiggy API
 
-Features implemented:
 - Filter restaurants by name or rating
 - Nested Routing using react-router
 - Shimmer UI in restaurant cards and menu list page
