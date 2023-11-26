@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
+import { SWIGGY_MENU_DAPI, SWIGGY_MENU_MAPI } from "./constant";
 
 const useRestaurantMenu = (resId) => {
   const [resData, setResData] = useState([]);
-
-  const fetch_url =
-    "https://corsproxy.io/?https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=" +
-    resId;
-
+  const isMobile = window.innerWidth <= 768;
+  const API = isMobile ? SWIGGY_MENU_MAPI : SWIGGY_MENU_DAPI;
+  const fetch_url = API + resId;
   const fetchRestaurantData = async () => {
     try {
       const data = await fetch(fetch_url);
       const json = await data.json();
+      console.log("Menu Data:", json.data);
       setResData(json.data);
     } catch (error) {
       console.log("Error: " + error);

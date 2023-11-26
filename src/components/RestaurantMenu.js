@@ -13,13 +13,16 @@ const RestaurantMenu = () => {
   const { name, cuisines, costForTwoMessage } =
     resData?.cards[0]?.card?.card?.info;
 
-  const categories =
-    resData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
-      (c) =>
-        c.card?.["card"]?.["@type"] ===
-        "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-    );
+  const isMobile = window.innerWidth <= 768;
+  const categories = resData?.cards[
+    isMobile ? 3 : 2
+  ]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+    (c) =>
+      c.card?.["card"]?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
 
+  if (!categories) return;
   return (
     <div className="text-center min-h-screen">
       <h1 className="font-bold my-6 text-2xl">{name}</h1>

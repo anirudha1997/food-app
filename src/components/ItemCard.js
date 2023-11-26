@@ -23,21 +23,21 @@ const ItemCard = (props) => {
 
   return (
     <div
-      className="bg-white mb-3 p-4 flex items-center justify-between"
+      className="bg-white mb-3 p-4 md:flex items-center justify-between"
       data-testid="itemCard"
     >
       <img
         src={imageId ? CDN_URL + imageId : NO_IMAGE}
-        className="w-2/12"
+        className="w-full md:w-2/12"
       ></img>
-      <div className="w-10/12 pl-4 text-left">
-        <div className="flex items-center justify-between">
-          <h4 className="font-bold text-xl">{name}</h4>
-          <div className="font-bold text-xl">
+      <div className="w-full md:w-10/12 md:pl-4 text-left">
+        <div className="md:flex items-center justify-between py-3 md:py-0">
+          <h4 className="font-bold md:text-xl">{name}</h4>
+          <div className="font-bold md:text-xl pt-2 md:pt-0">
             ₹{price ? price / 100 : defaultPrice / 100}
           </div>
         </div>
-        <p className="text-left">{description}</p>
+        <p className="text-left text-sm md:text-base">{description}</p>
         <button
           className="bg-green-200 rounded-md font-bold px-3 py-1 mt-3 border border-green-200 curo hover:bg-white"
           onClick={() => {

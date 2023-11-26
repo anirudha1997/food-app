@@ -1,6 +1,7 @@
 import RestaurantCard, { withPopularLabel } from "./RestaurantCard";
 import { useRef, useEffect, useState } from "react";
 import ShimmerCards from "./ShimmerCards";
+import { SWIGGY_DAPI, SWIGGY_MAPI } from "../utils/constant";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -31,9 +32,9 @@ const Body = () => {
 
   const fetctData = async () => {
     try {
-      const data = await fetch(
-        "https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&page_type=DESKTOP_WEB_LISTING"
-      );
+      const isMobile = window.innerWidth <= 768;
+      const API = isMobile ? SWIGGY_MAPI : SWIGGY_DAPI;
+      const data = await fetch(API);
       const json = await data.json();
       setRestaurantList(
         json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
