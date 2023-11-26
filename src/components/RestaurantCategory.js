@@ -18,11 +18,7 @@ const RestaurantCategory = (props) => {
       {showItemsInList && (
         <div>
           {itemCards.map((item) => (
-            <ItemCard
-              key={item.card.info.id}
-              itemData={item}
-              cardLocation="Menu"
-            ></ItemCard>
+            <ItemCard key={item.card.info.id} itemData={item}></ItemCard>
           ))}
         </div>
       )}

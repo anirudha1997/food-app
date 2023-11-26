@@ -16,7 +16,7 @@ const Cart = () => {
     const itemPrice = item.card.info.price
       ? item.card.info.price / 100
       : item.card.info.defaultPrice / 100;
-    return total + itemPrice;
+    return total + itemPrice * item.quantity;
   }, 0);
 
   if (cartItems.length === 0)
@@ -30,11 +30,7 @@ const Cart = () => {
       <h1 className="text-2xl font-bold my-10">Cart</h1>
       <div className="bg-slate-100 my-3 px-4 py-2 shadow-md">
         {cartItems.map((item) => (
-          <ItemCard
-            key={item.card.info.id}
-            itemData={item}
-            cardLocation="Cart"
-          ></ItemCard>
+          <ItemCard key={item.card.info.id} itemData={item}></ItemCard>
         ))}
       </div>
       <div className="flex items-center justify-between">
@@ -44,7 +40,9 @@ const Cart = () => {
         >
           Clear Cart
         </button>
-        <div className="mr-5 text-xl font-bold">Total : ₹{cartValue}</div>
+        <div className="mr-5 text-xl font-bold">
+          Total : ₹{cartValue.toFixed(2)}
+        </div>
       </div>
     </div>
   );
