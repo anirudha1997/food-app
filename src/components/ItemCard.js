@@ -27,8 +27,8 @@ const ItemCard = (props) => {
   const clickHandler = (cardAction) => {
     clearTimeout(timer);
     if (cardAction === "Add") {
-      itemData.quantity = 1;
-      dispatch(addItem(itemData));
+      const newItemData = { ...itemData, quantity: 1 };
+      dispatch(addItem(newItemData));
       dispatch(setShowToast({ show: true, message: "Added to Cart" }));
     } else {
       dispatch(removeItem(itemData));
