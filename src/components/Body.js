@@ -55,10 +55,6 @@ const Body = () => {
         <h1 className="text-xl font-bold">
           {"Error fetching data: " + fetchError}
         </h1>
-        <h2>
-          Check if the CORS extension is enabled. For more details, please check
-          the README file.
-        </h2>
       </div>
     );
 
