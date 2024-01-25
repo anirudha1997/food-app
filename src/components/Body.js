@@ -1,7 +1,7 @@
 import RestaurantCard, { withPopularLabel } from "./RestaurantCard";
 import { useRef, useEffect, useState } from "react";
 import ShimmerCards from "./ShimmerCards";
-import { SWIGGY_DAPI, SWIGGY_MAPI } from "../utils/constant";
+import { SWIGGY_API } from "../utils/constant";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState([]);
@@ -33,15 +33,15 @@ const Body = () => {
   const fetctData = async () => {
     try {
       const isMobile = window.innerWidth <= 768;
-      const API = isMobile ? SWIGGY_MAPI : SWIGGY_DAPI;
+      const API = SWIGGY_API;
       const data = await fetch(API);
       const json = await data.json();
       setRestaurantList(
-        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
       setfilteredRestaurantList(
-        json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+        json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
       );
     } catch (error) {
