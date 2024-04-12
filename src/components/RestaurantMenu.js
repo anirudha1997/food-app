@@ -11,10 +11,10 @@ const RestaurantMenu = () => {
   if (resData.length === 0) return <ShimmerCards />;
 
   const { name, cuisines, costForTwoMessage } =
-    resData?.cards[0]?.card?.card?.info;
+    resData?.cards[2]?.card?.card?.info;
 
   const categories =
-    resData?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
+    resData?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(
       (c) =>
         c.card?.["card"]?.["@type"] ===
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
